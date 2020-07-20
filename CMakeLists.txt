@@ -1,33 +1,34 @@
 cmake_minimum_required(VERSION 3.10)
-project(Assignment_Six)
+project(GameOfLife)
+
 
 set(SOURCE_FILES
-    LifeSimulator.cpp
-    PatternAcorn.cpp
-    PatternBlinker.cpp
-    PatternBlock.cpp
-    PatternGlider.cpp
-    PatternGosperGliderGun.cpp
-    RendererConsole.cpp 
+    src/LifeSimulator.cpp
+    src/PatternAcorn.cpp
+    src/PatternBlinker.cpp
+    src/PatternBlock.cpp
+    src/PatternGlider.cpp
+    src/PatternGosperGliderGun.cpp
+    src/RendererConsole.cpp 
 )
 
 set (HEADER_FILES
-    LifeSimulator.hpp
-    Pattern.hpp
-    PatternAcorn.hpp
-    PatternBlinker.hpp
-    PatternBlock.hpp
-    PatternGlider.hpp
-    PatternGosperGliderGun.hpp
-    Renderer.hpp
-    RendererConsole.hpp
+    src/LifeSimulator.hpp
+    src/Pattern.hpp
+    src/PatternAcorn.hpp
+    src/PatternBlinker.hpp
+    src/PatternBlock.hpp
+    src/PatternGlider.hpp
+    src/PatternGosperGliderGun.hpp
+    src/Renderer.hpp
+    src/RendererConsole.hpp
 )
 
 set (UNIT_TEST_FILES
-    TestGameOfLife.cpp
+    src/TestGameOfLife.cpp
 )
 
-add_executable(ConwaysLife ${SOURCE_FILES} ${HEADER_FILES} rlutil.h main.cpp)
+add_executable(ConwaysLife ${SOURCE_FILES} ${HEADER_FILES} src/rlutil.h main.cpp)
 add_executable(UnitTestRunner ${SOURCE_FILES} ${HEADER_FILES} ${UNIT_TEST_FILES})
 
 set_property(TARGET ConwaysLife PROPERTY CXX_STANDARD 17)
