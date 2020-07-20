@@ -1,35 +1,40 @@
 cmake_minimum_required(VERSION 3.10)
 project(GameOfLife)
 
+set (SRC_DIR src)
+set (INC_DIR ${SRC_DIR}/include)
 
-set(SOURCE_FILES
-    src/LifeSimulator.cpp
-    src/PatternAcorn.cpp
-    src/PatternBlinker.cpp
-    src/PatternBlock.cpp
-    src/PatternGlider.cpp
-    src/PatternGosperGliderGun.cpp
-    src/RendererConsole.cpp 
+set (SOURCE_FILES
+    ${SRC_DIR}/LifeSimulator.cpp
+    ${SRC_DIR}/PatternAcorn.cpp
+    ${SRC_DIR}/PatternBlinker.cpp
+    ${SRC_DIR}/PatternBlock.cpp
+    ${SRC_DIR}/PatternGlider.cpp
+    ${SRC_DIR}/PatternGosperGliderGun.cpp
+    ${SRC_DIR}/RendererConsole.cpp 
 )
 
 set (HEADER_FILES
-    src/LifeSimulator.hpp
-    src/Pattern.hpp
-    src/PatternAcorn.hpp
-    src/PatternBlinker.hpp
-    src/PatternBlock.hpp
-    src/PatternGlider.hpp
-    src/PatternGosperGliderGun.hpp
-    src/Renderer.hpp
-    src/RendererConsole.hpp
+    ${INC_DIR}/LifeSimulator.hpp
+    ${INC_DIR}/Pattern.hpp
+    ${INC_DIR}/PatternAcorn.hpp
+    ${INC_DIR}/PatternBlinker.hpp
+    ${INC_DIR}/PatternBlock.hpp
+    ${INC_DIR}/PatternGlider.hpp
+    ${INC_DIR}/PatternGosperGliderGun.hpp
+    ${INC_DIR}/Renderer.hpp
+    ${INC_DIR}/RendererConsole.hpp
 )
 
 set (UNIT_TEST_FILES
-    src/TestGameOfLife.cpp
+    ${SRC_DIR}/TestGameOfLife.cpp
 )
 
-add_executable(ConwaysLife ${SOURCE_FILES} ${HEADER_FILES} src/rlutil.h main.cpp)
+add_executable(ConwaysLife ${SOURCE_FILES} ${HEADER_FILES} ${INC_DIR}/rlutil.h main.cpp)
 add_executable(UnitTestRunner ${SOURCE_FILES} ${HEADER_FILES} ${UNIT_TEST_FILES})
+
+target_include_directories(ConwaysLife PUBLIC ${INC_DIR})
+target_include_directories(UnitTestRunner PUBLIC ${INC_DIR})
 
 set_property(TARGET ConwaysLife PROPERTY CXX_STANDARD 17)
 
